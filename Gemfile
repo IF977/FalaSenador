@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Versao ruby do projeto
+ruby '2.4.0'
+
 # Adicionando Bootstrap
 gem 'bootstrap-sass'
 gem 'sprockets'
