@@ -8,6 +8,9 @@ end
 # Versao ruby do projeto
 ruby '2.4.0'
 
+# Chamar API
+gem 'restfolia'
+
 # Adicionando Bootstrap
 gem 'bootstrap-sass'
 gem 'sprockets'

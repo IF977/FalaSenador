@@ -161,6 +161,8 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    restfolia (1.0.3)
+      multi_json (~> 1.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -243,6 +245,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.4)
+  restfolia
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver

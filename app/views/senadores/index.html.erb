@@ -21,5 +21,15 @@
   <div class="container theme-showcase" role="main">
       <h1>Senadores</h1>
 
+      <% unless @senadores.nil? %>
+        <% @senadores.each do |senador| %>
+            <p><%= 'Nome: ' + senador.IdentificacaoParlamentar.NomeParlamentar %></p>
+
+        <%end%>
+      <% else %>
+        <h3>Nenhum senador encontrado</h3>
+
+      <%end%>
+
   </div> <!-- /container -->
 </div>
