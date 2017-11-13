@@ -23,7 +23,13 @@
 
       <% unless @senadores.nil? %>
         <% @senadores.each do |senador| %>
-            <p><%= 'Nome: ' + senador.IdentificacaoParlamentar.NomeParlamentar %></p>
+
+            <div class="col-sm-2">
+                <img class="img-thumbnail" src="<%= senador.IdentificacaoParlamentar.UrlFotoParlamentar %>" alt="Foto">
+                  <h5><%= senador.IdentificacaoParlamentar.NomeParlamentar %></h5>
+                  <h6><%= senador.IdentificacaoParlamentar.SiglaPartidoParlamentar + ' - ' + senador.IdentificacaoParlamentar.UfParlamentar %></h6>
+                  <!--a href="#" class="btn btn-primary">Fala mais!</a-->
+            </div>
 
         <%end%>
       <% else %>
