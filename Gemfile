@@ -8,6 +8,9 @@ end
 # Versao ruby do projeto
 ruby '2.4.0'
 
+# Para extrair dados a partir de urls
+gem 'wombat'
+
 # Chamar API
 gem 'restfolia'
 
