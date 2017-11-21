@@ -3,8 +3,9 @@ class SenadoresController < ApplicationController
 
   def index
 
-      origem = Restfolia.at('http://legis.senado.leg.br/dadosabertos/senador/lista/atual.json').get
-      @senadores = origem.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
+      origem_sen = Restfolia.at('http://legis.senado.leg.br/dadosabertos/senador/lista/atual.json').get
+      @senadores = origem_sen.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
+
   end
 
 end
