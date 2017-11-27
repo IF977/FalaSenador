@@ -30,25 +30,6 @@
                   <h6><%= senador.IdentificacaoParlamentar.SiglaPartidoParlamentar + ' - ' + senador.IdentificacaoParlamentar.UfParlamentar %></h6>
                   <h6><%= senador.IdentificacaoParlamentar.CodigoParlamentar %></h6>
 
-                  <%
-                  primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
-
-                  url_codigo =  "#{primeira}#{codigo}#{segunda}"
-
-                  origem_dis = Restfolia.at(url_codigo).get
-                  discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
-
-                  %>
-
-                  <% discursos.each do |discurso| %>
-
-                      <p>
-                          <h6><%= discurso.UrlTexto %></h6>
-                      </p>
-                       <!-- Pegando apenas o PRIMEIRO discurso-->
-                       <%break%>
-                  <%end%>
-
                   <!--a href="#" class="btn btn-primary">Fala mais!</a-->
             </div>
 
