@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171127161028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "senators", force: :cascade do |t|
+    t.string "CodigoParlamentar"
+    t.string "Nome"
+    t.string "UrlFoto"
+    t.string "UrlPagina"
+    t.string "Email"
+    t.string "SiglaPartido"
+    t.string "UF"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "speeches", force: :cascade do |t|
+    t.string "CodigoParlamentar"
+    t.string "CodigoPronunciamento"
+    t.string "Data"
+    t.string "UrlTexto"
+    t.text "TextoCompleto"
+    t.bigint "senator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["senator_id"], name: "index_speeches_on_senator_id"
+  end
+
+  add_foreign_key "speeches", "senators"
 end
