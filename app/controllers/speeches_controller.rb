@@ -10,6 +10,7 @@ class SpeechesController < ApplicationController
     senadores.each do |senador|
         primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
 
+        # Montando Url para acessar os discursos do senador
         url_codigo =  "#{primeira}#{codigo}#{segunda}"
 
         origem_dis = Restfolia.at(url_codigo).get
@@ -24,6 +25,8 @@ class SpeechesController < ApplicationController
                           :textocompleto => 0)
 
         end
+        
+        break
     end
 
     @speeches = Speech.all
