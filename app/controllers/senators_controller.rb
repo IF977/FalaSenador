@@ -5,22 +5,6 @@ class SenatorsController < ApplicationController
   # GET /senators.json
   def index
     @senators = Senator.all
-
-    origem_sen = Restfolia.at('http://legis.senado.leg.br/dadosabertos/senador/lista/atual.json').get
-    @senadores = origem_sen.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
-
-    @senadores.each do |senador|
-
-        novo = Senator.new(:CodigoParlamentar => senador.IdentificacaoParlamentar.CodigoParlamentar,
-                           :Nome => senador.IdentificacaoParlamentar.NomeParlamentar,
-                           :UrlFoto => senador.IdentificacaoParlamentar.UrlFotoParlamentar,
-                           :UrlPagina => senador.IdentificacaoParlamentar.UrlPaginaParlamentar,
-                           #:Email => senador.IdentificacaoParlamentar.EmailParlamentar,
-                           :SiglaPartido => senador.IdentificacaoParlamentar.SiglaPartidoParlamentar,
-                           :UF => senador.IdentificacaoParlamentar.UfParlamentar)
-
-        novo.save
-    end
   end
 
   # GET /senators/1
