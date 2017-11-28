@@ -1,0 +1,42 @@
+<%= form_with(model: speech, local: true) do |form| %>
+  <% if speech.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(speech.errors.count, "error") %> prohibited this speech from being saved:</h2>
+
+      <ul>
+      <% speech.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigoparlamentar %>
+    <%= form.text_field :codigoparlamentar, id: :speech_codigoparlamentar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigopronunciamento %>
+    <%= form.text_field :codigopronunciamento, id: :speech_codigopronunciamento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_field :data, id: :speech_data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :urltexto %>
+    <%= form.text_field :urltexto, id: :speech_urltexto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :textocompleto %>
+    <%= form.text_area :textocompleto, id: :speech_textocompleto %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

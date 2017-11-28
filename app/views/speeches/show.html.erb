@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigoparlamentar:</strong>
+  <%= @speech.codigoparlamentar %>
+</p>
+
+<p>
+  <strong>Codigopronunciamento:</strong>
+  <%= @speech.codigopronunciamento %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @speech.data %>
+</p>
+
+<p>
+  <strong>Urltexto:</strong>
+  <%= @speech.urltexto %>
+</p>
+
+<p>
+  <strong>Textocompleto:</strong>
+  <%= @speech.textocompleto %>
+</p>
+
+<%= link_to 'Edit', edit_speech_path(@speech) %> |
+<%= link_to 'Back', speeches_path %>

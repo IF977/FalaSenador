@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigoparlamentar:</strong>
+  <%= @senator.codigoparlamentar %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @senator.nome %>
+</p>
+
+<p>
+  <strong>Urlfoto:</strong>
+  <%= @senator.urlfoto %>
+</p>
+
+<p>
+  <strong>Urlpagina:</strong>
+  <%= @senator.urlpagina %>
+</p>
+
+<p>
+  <strong>Siglapartido:</strong>
+  <%= @senator.siglapartido %>
+</p>
+
+<p>
+  <strong>Uf:</strong>
+  <%= @senator.uf %>
+</p>
+
+<%= link_to 'Edit', edit_senator_path(@senator) %> |
+<%= link_to 'Back', senators_path %>

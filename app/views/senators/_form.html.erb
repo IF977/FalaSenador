@@ -1,0 +1,47 @@
+<%= form_with(model: senator, local: true) do |form| %>
+  <% if senator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(senator.errors.count, "error") %> prohibited this senator from being saved:</h2>
+
+      <ul>
+      <% senator.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigoparlamentar %>
+    <%= form.text_field :codigoparlamentar, id: :senator_codigoparlamentar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :senator_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :urlfoto %>
+    <%= form.text_field :urlfoto, id: :senator_urlfoto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :urlpagina %>
+    <%= form.text_field :urlpagina, id: :senator_urlpagina %>
+  </div>
+
+  <div class="field">
+    <%= form.label :siglapartido %>
+    <%= form.text_field :siglapartido, id: :senator_siglapartido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uf %>
+    <%= form.text_field :uf, id: :senator_uf %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
