@@ -4,6 +4,28 @@ class SpeechesController < ApplicationController
   # GET /speeches
   # GET /speeches.json
   def index
+    senadores = Senator.all
+
+    # Pegando do BD
+    senadores.each do |senador|
+        primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
+
+        url_codigo =  "#{primeira}#{codigo}#{segunda}"
+
+        origem_dis = Restfolia.at(url_codigo).get
+        discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
+
+        discursos.each do |discurso|
+
+            Speech.create(:codigoparlamentar => senador.codigoparlamentar,
+                          :codigopronunciamento => discurso.CodigoPronunciamento,
+                          :data => discurso.DataPronunciamento,
+                          :urltexto => discurso.UrlTexto,
+                          :textocompleto => 0)
+
+        end
+    end
+
     @speeches = Speech.all
   end
 
