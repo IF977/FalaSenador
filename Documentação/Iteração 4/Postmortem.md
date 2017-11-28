@@ -1,4 +1,4 @@
-> Iteração 3
+> Iteração 4
 
 #### Post mortem
 
@@ -40,6 +40,7 @@ Início da iteração | Término da iteração
 - Criar identidade visual do projeto
 
 #### Lições aprendidas
+- Realizacao de requisicoes de APIs no rails
 - Utilizacao de Scaffolds no rails
 - Manipulacao de banco de dados pg
 - A importancia da utilizacao de branchs
