@@ -4,19 +4,27 @@ class SenatorsController < ApplicationController
   # GET /senators
   # GET /senators.json
   def index
-    origem_sen = Restfolia.at('http://legis.senado.leg.br/dadosabertos/senador/lista/atual.json').get
-    senadores = origem_sen.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
+     novo = Senator.first
 
-    senadores.each do |senador|
+     if novo
+         # Nao faz nada
+     else
+         # Carrega o BD
 
-        Senator.create(:codigoparlamentar => senador.IdentificacaoParlamentar.CodigoParlamentar,
-                       :nome => senador.IdentificacaoParlamentar.NomeParlamentar,
-                       :urlfoto => senador.IdentificacaoParlamentar.UrlFotoParlamentar,
-                       :urlpagina => senador.IdentificacaoParlamentar.UrlPaginaParlamentar,
-                       :siglapartido => senador.IdentificacaoParlamentar.SiglaPartidoParlamentar,
-                       :uf => senador.IdentificacaoParlamentar.UfParlamentar)
+         origem_sen = Restfolia.at('http://legis.senado.leg.br/dadosabertos/senador/lista/atual.json').get
+         senadores = origem_sen.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
 
-    end
+         senadores.each do |senador|
+
+             Senator.create(:codigoparlamentar => senador.IdentificacaoParlamentar.CodigoParlamentar,
+                            :nome => senador.IdentificacaoParlamentar.NomeParlamentar,
+                            :urlfoto => senador.IdentificacaoParlamentar.UrlFotoParlamentar,
+                            :urlpagina => senador.IdentificacaoParlamentar.UrlPaginaParlamentar,
+                            :siglapartido => senador.IdentificacaoParlamentar.SiglaPartidoParlamentar,
+                            :uf => senador.IdentificacaoParlamentar.UfParlamentar)
+
+         end
+     end
 
     @senators = Senator.all
   end

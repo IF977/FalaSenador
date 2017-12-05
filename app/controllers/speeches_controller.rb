@@ -4,29 +4,35 @@ class SpeechesController < ApplicationController
   # GET /speeches
   # GET /speeches.json
   def index
-    senadores = Senator.all
+    novo = Speech.first
 
-    # Pegando do BD
-    senadores.each do |senador|
-        primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
+    if novo
+        # Nao faz nada
+    else
+        # Pegando do BD
+        senadores = Senator.all
 
-        # Montando Url para acessar os discursos do senador
-        url_codigo =  "#{primeira}#{codigo}#{segunda}"
+        senadores.each do |senador|
+            primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
 
-        origem_dis = Restfolia.at(url_codigo).get
-        discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
+            # Montando Url para acessar os discursos do senador
+            url_codigo =  "#{primeira}#{codigo}#{segunda}"
 
-        discursos.each do |discurso|
+            origem_dis = Restfolia.at(url_codigo).get
+            discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
 
-            Speech.create(:codigoparlamentar => senador.codigoparlamentar,
-                          :codigopronunciamento => discurso.CodigoPronunciamento,
-                          :data => discurso.DataPronunciamento,
-                          :urltexto => discurso.UrlTexto,
-                          :textocompleto => 0)
+            discursos.each do |discurso|
 
-        end
-        
-        break
+                Speech.create(:codigoparlamentar => senador.codigoparlamentar,
+                              :codigopronunciamento => discurso.CodigoPronunciamento,
+                              :data => discurso.DataPronunciamento,
+                              :urltexto => discurso.UrlTexto,
+                              :textocompleto => 0)
+
+            end
+         end
+
+        #break
     end
 
     @speeches = Speech.all
