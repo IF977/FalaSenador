@@ -25,10 +25,10 @@
         <% @senadores.each do |senador| %>
 
             <div class="col-sm-2">
-                <img class="img-thumbnail" src="<%= senador.IdentificacaoParlamentar.UrlFotoParlamentar %>" alt="Foto">
-                  <h5><%= senador.IdentificacaoParlamentar.NomeParlamentar %></h5>
-                  <h6><%= senador.IdentificacaoParlamentar.SiglaPartidoParlamentar + ' - ' + senador.IdentificacaoParlamentar.UfParlamentar %></h6>
-                  <h6><%= senador.IdentificacaoParlamentar.CodigoParlamentar %></h6>
+                <img class="img-thumbnail" src="<%= senador.urlfoto %>" alt="Foto">
+                  <h5><%= senador.nome %></h5>
+                  <h6><%= senador.siglapartido + ' - ' + senador.uf %></h6>
+                  <h6><%= senador.codigoparlamentar %></h6>
 
                   <!--a href="#" class="btn btn-primary">Fala mais!</a-->
             </div>
