@@ -13,7 +13,9 @@ class SpeechesController < ApplicationController
         senadores = Senator.all
 
         senadores.each do |senador|
-            primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", "5529", "/discursos.json"
+            puts senador.codigoparlamentar
+            
+            primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", senador.codigoparlamentar, "/discursos.json"
 
             # Montando Url para acessar os discursos do senador
             url_codigo =  "#{primeira}#{codigo}#{segunda}"
