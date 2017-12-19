@@ -13,8 +13,8 @@ class SpeechesController < ApplicationController
         senadores = Senator.all
 
         senadores.each do |senador|
-            puts senador.codigoparlamentar
-            
+            #puts senador.codigoparlamentar
+
             primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", senador.codigoparlamentar, "/discursos.json"
 
             # Montando Url para acessar os discursos do senador
@@ -25,16 +25,25 @@ class SpeechesController < ApplicationController
 
             discursos.each do |discurso|
 
+                discursocompleto = Wombat.crawl do
+                     url = discurso.UrlTexto
+                     base_url url
+                     path "/"
+
+                     discurso xpath: "/html/body/div/div[3]/div/div/div/div/div/div/div/div[2]"
+
+                end
+
                 Speech.create(:codigoparlamentar => senador.codigoparlamentar,
                               :codigopronunciamento => discurso.CodigoPronunciamento,
                               :data => discurso.DataPronunciamento,
                               :urltexto => discurso.UrlTexto,
-                              :textocompleto => 0)
+                              :textocompleto => discursocompleto)
 
             end
-         end
 
-        #break
+         #break
+         end
     end
 
     @speeches = Speech.all
