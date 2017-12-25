@@ -23,7 +23,14 @@ class SpeechesController < ApplicationController
             origem_dis = Restfolia.at(url_codigo).get
             discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
 
+            # Para limitar a qtd de discursos
+            cont = 0
+
             discursos.each do |discurso|
+                if cont > 1
+
+                    break
+                end
 
                 discursocompleto = Wombat.crawl do
                      url = discurso.UrlTexto
