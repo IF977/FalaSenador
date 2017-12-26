@@ -4,13 +4,65 @@ class SpeechesController < ApplicationController
   # GET /speeches
   # GET /speeches.json
   def index
-    novo = Speech.first
+    ultimo = Speech.last
 
-    if novo
-        # Nao faz nada
+    proximo = 0
+
+    # Pegando do BD
+    senadores = Senator.all
+
+    if ultimo
+        # Continuando preenchimento
+        senadores.each do |senador|
+            if ultimo.codigoparlamentar == "4697"
+                break
+            end
+
+            if proximo == 1
+                primeira, codigo, segunda = "http://legis.senado.leg.br/dadosabertos/senador/", senador.codigoparlamentar, "/discursos.json"
+
+                # Montando Url para acessar os discursos do senador
+                url_codigo =  "#{primeira}#{codigo}#{segunda}"
+
+                origem_dis = Restfolia.at(url_codigo).get
+                discursos = origem_dis.DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento
+
+                # Para limitar a qtd de discursos
+                cont = 0
+
+                discursos.each do |discurso|
+                    if cont > 1
+
+                        break
+                    end
+
+                    discursocompleto = Wombat.crawl do
+                         url = discurso.UrlTexto
+                         base_url url
+                         path "/"
+
+                         discurso xpath: "/html/body/div/div[3]/div/div/div/div/div/div/div/div[2]"
+
+                    end
+
+                    Speech.create(:codigoparlamentar => senador.codigoparlamentar,
+                                  :codigopronunciamento => discurso.CodigoPronunciamento,
+                                  :data => discurso.DataPronunciamento,
+                                  :urltexto => discurso.UrlTexto,
+                                  :textocompleto => discursocompleto)
+
+                    cont += 1
+                end
+            end
+
+            if senador.codigoparlamentar == ultimo.codigoparlamentar
+                proximo = 1
+            end
+
+         #break
+         end
+
     else
-        # Pegando do BD
-        senadores = Senator.all
 
         senadores.each do |senador|
             #puts senador.codigoparlamentar
