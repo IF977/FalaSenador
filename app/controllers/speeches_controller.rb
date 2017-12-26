@@ -47,6 +47,7 @@ class SpeechesController < ApplicationController
                               :urltexto => discurso.UrlTexto,
                               :textocompleto => discursocompleto)
 
+                cont += 1
             end
 
          #break
