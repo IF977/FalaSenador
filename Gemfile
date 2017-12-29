@@ -8,6 +8,9 @@ end
 # Versao ruby do projeto
 ruby '2.4.0'
 
+# Para contar as palavras dos discursos
+gem 'words_counted'
+
 # Para extrair dados a partir de urls
 gem 'wombat'
 
