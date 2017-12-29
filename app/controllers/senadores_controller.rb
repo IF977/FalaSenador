@@ -4,7 +4,8 @@ class SenadoresController < ApplicationController
   def index
 
       @senadores = Senator.all
-      
+      @discursos = Speech.all
+
   end
 
 end

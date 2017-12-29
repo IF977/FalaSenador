@@ -30,6 +30,19 @@
                   <h6><%= senador.siglapartido + ' - ' + senador.uf %></h6>
                   <h6><%= senador.codigoparlamentar %></h6>
 
+                  <% @discursos.each do |umdiscurso| %>
+
+                    <% if senador.codigoparlamentar == umdiscurso.codigoparlamentar %>
+
+                        <!--% contagem = WordsCounted.count(umdiscurso.textocompleto, exclude: ->(word) { word.length < 4 }) %-->
+                        <% contagem = WordsCounted.count(umdiscurso.textocompleto, exclude: "- a e é o r v exª lá os na no por em da das de do dos que para pela sobre são muito com uma um sr se as como também não nós") %>
+
+                        <p><%= contagem.most_frequent_tokens %></p>
+
+                    <%end%>
+                  <%end%>
+                  <!--%break%-->
+
                   <!--a href="#" class="btn btn-primary">Fala mais!</a-->
             </div>
 
